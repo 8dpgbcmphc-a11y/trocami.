@@ -43,7 +43,7 @@ const T = {
   fr: {
     all:"Objets", add:"Proposer", inbox:"Messages", login:"Connexion", logout:"Sortir",
     search:"Rechercher un objet…", none:"Aucun objet pour le moment.",
-    title:"Titre", desc:"Description", wanted:"Je cherche en échange", price:"Prix en argent (optionnel)",
+    title:"Titre", desc:"Description", wanted:"Je cherche en échange", price:"Prix en argent, FCFA (optionnel)",
     photo:"Photo", publish:"Publier", email:"Email", pass:"Mot de passe", name:"Ton prénom",
     signin:"Se connecter", signup:"Créer un compte", by:"Par", exchange:"Échange contre",
     orMoney:"ou en argent", contact:"Contacter", yourMsg:"Ton message", send:"Envoyer",
@@ -55,7 +55,7 @@ const T = {
   en: {
     all:"Items", add:"Offer", inbox:"Messages", login:"Log in", logout:"Log out",
     search:"Search an item…", none:"No items yet.",
-    title:"Title", desc:"Description", wanted:"Looking for in exchange", price:"Price in money (optional)",
+    title:"Title", desc:"Description", wanted:"Looking for in exchange", price:"Price in money, FCFA (optional)",
     photo:"Photo", publish:"Publish", email:"Email", pass:"Password", name:"Your first name",
     signin:"Log in", signup:"Sign up", by:"By", exchange:"Swap for",
     orMoney:"or in money", contact:"Contact", yourMsg:"Your message", send:"Send",
@@ -112,7 +112,7 @@ async function loadItems(q) {
       ${i.photo_url ? `<img src="${esc(i.photo_url)}" alt="">` : ""}
       <h3>${esc(i.title)}</h3>
       ${i.wanted ? `<span class="tag">${t("exchange")}: ${esc(i.wanted)}</span>` : ""}
-      ${i.price ? `<span class="tag">${esc(i.price)}</span>` : ""}
+      ${i.price ? `<span class="tag">${esc(i.price)} FCFA</span>` : ""}
       <div class="muted">${t("by")} ${esc(i.owner_name)}</div>
     </div>`).join("") : `<p class="muted">${t("none")}</p>`;
 }
@@ -159,7 +159,7 @@ async function viewItem(id) {
     <h2>${esc(i.title)}</h2>
     <p>${esc(i.description)}</p>
     ${i.wanted ? `<span class="tag">${t("exchange")}: ${esc(i.wanted)}</span>` : ""}
-    ${i.price ? `<span class="tag">${t("orMoney")}: ${esc(i.price)}</span>` : ""}
+    ${i.price ? `<span class="tag">${t("orMoney")}: ${esc(i.price)} FCFA</span>` : ""}
     <p class="muted">${t("by")} ${esc(i.owner_name)} · ${avg ? "★ " + avg + " (" + rs.length + ")" : t("noRate")}</p>
     ${(rs || []).filter(r => r.comment).map(r => `<div class="msg">★ ${r.stars} — ${esc(r.comment)}</div>`).join("")}
   </div>
